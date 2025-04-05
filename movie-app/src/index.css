@@ -2,6 +2,15 @@
 
 @layer base {
   html {
-    @apply bg-[#030014] text-white;
+    background-color: #030014;
+    color: white;
   }
+}
+
+.gradient-text {
+  background: linear-gradient(to right, #a855f7, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
 }

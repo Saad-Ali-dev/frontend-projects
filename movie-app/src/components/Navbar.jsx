@@ -16,10 +16,10 @@ export default function Navbar() {
             Movies
           </a>
           <a
-            href="/tv"
+            href="/pricing"
             className="text-base md:text-lg font-semibold hover:text-gray-500 transition-colors"
           >
-            TV Shows
+            Pricing
           </a>
         </div>
       </nav>
