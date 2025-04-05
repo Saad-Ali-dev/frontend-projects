@@ -14,8 +14,9 @@ export default function MovieCard({ movie }) {
   const imageUrl = poster_path ? `${IMGPATH}${poster_path}` : null;
 
   return (
-    <div className="bg-gradient-to-b from-gray-800 via-gray-900 to-black rounded-lg shadow-xl overflow-hidden max-w-sm mx-auto transition-transform duration-300 ease-in-out hover:scale-105 group">
+    <div className="bg-gradient-to-b from-gray-800 via-gray-900 to-black rounded-lg shadow-xl overflow-hidden max-w-sm mx-auto transition-transform duration-300 ease-in-out hover:scale-105 group cursor-pointer">
        {/* Image Container */}
+       {imageUrl ? (
       <div className="aspect-[2/3] w-full bg-gray-700">
         <img
           src={imageUrl}
@@ -23,7 +24,11 @@ export default function MovieCard({ movie }) {
           className="w-full h-auto object-cover aspect-[2/3]  group-hover:opacity-90 transition-opacity duration-300" 
           loading="lazy" 
         />
-      </div>
+      </div>): <img
+          src="/No-Poster.png"
+          alt={`no poster`}
+          className="w-full h-auto object-cover aspect-[2/3]" 
+        />}
 
       {/* Content Area */}
       <div className="p-4 md:p-5 text-white">
