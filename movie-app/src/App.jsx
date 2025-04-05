@@ -5,7 +5,7 @@ import Home from "./components/Home.jsx";
 export default function App() {
   const [movies, setMovies] = useState([]);
 
-  const APIKEY = import.meta.env.VITE_API_KEY;
+  const APIKEY = import.meta.env.VITE_TMDB_API_KEY;
   const APIURL = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${APIKEY}&page=1`;
   
   useEffect(() => {
