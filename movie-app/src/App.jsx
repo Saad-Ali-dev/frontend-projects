@@ -4,6 +4,9 @@ import Home from "./components/Home.jsx";
 
 export default function App() {
   const [movies, setMovies] = useState([]);
+
+  const APIKEY = import.meta.env.VITE_API_KEY;
+  const APIURL = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${APIKEY}&page=1`;
   
   useEffect(() => {
     try{
@@ -14,8 +17,6 @@ export default function App() {
   }, []);
 
   async function fetchData(){
-  const APIKEY = "0f80e0ce0113ccbb7bbd8f2a9c8ab106";
-  const APIURL = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${APIKEY}&page=1`;
 
   const response = await fetch(APIURL)
   const data = await response.json();
