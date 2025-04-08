@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 
-import HeroSection from './HeroSection.jsx'
-import Search from './Search.jsx'
-import MovieCards from './MovieCards.jsx'
-
+import HeroSection from '../components/HeroSection.jsx'
+import Search from '../components/Search.jsx'
+import MovieCards from '../components/MovieCards.jsx'
 
 
 export default function Home({movies, setMovies}){
@@ -12,7 +11,7 @@ export default function Home({movies, setMovies}){
     <div className="flex flex-col items-center justify-center">
       <HeroSection />
       <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} setMovies={setMovies}/>
-      <MovieCards movies={movies}/>
+      <MovieCards movies={movies} title="Popular" />
     </div>
   )
 }

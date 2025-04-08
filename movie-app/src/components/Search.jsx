@@ -9,7 +9,7 @@ export default function Search({ searchTerm, setSearchTerm, setMovies }) {
   // Handler for form submission (e.g., pressing Enter)
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const APIKEY = "0f80e0ce0113ccbb7bbd8f2a9c8ab106";
+    const APIKEY = import.meta.env.VITE_TMDB_API_KEY;
     const APIURL = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${APIKEY}&page=1`;
     const IMGPATH = "https://image.tmdb.org/t/p/w1280";
     const SEARCHAPI = `https://api.themoviedb.org/3/search/movie?&api_key=${APIKEY}&query=`;
