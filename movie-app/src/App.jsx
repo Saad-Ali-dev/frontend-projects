@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; 
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import MoviesPage from "./pages/MoviesPage.jsx";
@@ -14,18 +14,19 @@ export default function App() {
   const APIURL = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${APIKEY}&page=1`;
 
   useEffect(() => {
-    try {
-      fetchData();
-    } catch (error) {
-      console.log(error);
+    const fetchData = async () => {
+      try {
+        const response = await fetch(APIURL);
+        const data = await response.json();
+        setMovies(data.results);
+      } catch (error) {
+        console.log(error);
+      }
     }
+    
+    fetchData();
   }, []);
 
-  async function fetchData() {
-    const response = await fetch(APIURL);
-    const data = await response.json();
-    setMovies(data.results);
-  }
 
   return (
     <Router> 

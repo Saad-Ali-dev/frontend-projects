@@ -5,9 +5,6 @@ import PropTypes from 'prop-types';
 export default function MovieCard({ movie }) {
   const IMGPATH = "https://image.tmdb.org/t/p/w500";
 
-  if (!movie) {
-    return <div className="text-white">Loading movie data...</div>; 
-  }
 
   const { title, poster_path, vote_average: rating} = movie; 
 
