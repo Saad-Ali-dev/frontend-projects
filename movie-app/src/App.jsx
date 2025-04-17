@@ -8,23 +8,37 @@ import MovieDetailsPage from "./pages/MovieDetailsPage.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx"; 
 
 export default function App() {
-  const [movies, setMovies] = useState([]);
+  const [popularMovies, setPopularMovies] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
+  const [tvShows, setTvShows] = useState([]);
 
   const APIKEY = import.meta.env.VITE_TMDB_API_KEY;
   const APIURL = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${APIKEY}&page=1`;
+  const tvShowsURL = `https://api.themoviedb.org/3/discover/tv?include_adult=false&api_key=${APIKEY}&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc&with_original_language=en`;
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchMovies = async () => {
       try {
         const response = await fetch(APIURL);
         const data = await response.json();
-        setMovies(data.results);
+        setPopularMovies(data.results);
       } catch (error) {
         console.log(error);
       }
     }
     
-    fetchData();
+    const fetchTvShows = async () => {
+      try {
+        const response = await fetch(tvShowsURL);
+        const data = await response.json();
+        setTvShows(data.results.slice(3,10));
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    
+    fetchMovies();
+    fetchTvShows();
   }, []);
 
 
@@ -36,8 +50,8 @@ export default function App() {
         {/* Content Layer */}
         <Navbar />
         <Routes> 
-          <Route path="/" element={<HomePage movies={movies} setMovies={setMovies} />} />
-          <Route path="/movies" element={<MoviesPage movies={movies} setMovies={setMovies} />} /> 
+          <Route path="/" element={<HomePage popularMovies={popularMovies} searchResults={searchResults} setSearchResults={setSearchResults} />} />
+          <Route path="/movies" element={<MoviesPage movies={popularMovies} tvShows={tvShows} />} /> 
           <Route path="/movie/:id" element={<MovieDetailsPage />} /> 
           <Route path="/pricing" element={<PricingPage />} /> 
           <Route path="*" element={<ErrorPage />} /> 

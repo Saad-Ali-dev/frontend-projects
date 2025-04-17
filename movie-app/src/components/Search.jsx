@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function Search({ searchTerm, setSearchTerm, setMovies }) {
+export default function Search({ searchTerm, setSearchTerm, setSearchResults }) {
   // Handler for input changes
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
@@ -10,34 +10,24 @@ export default function Search({ searchTerm, setSearchTerm, setMovies }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const APIKEY = import.meta.env.VITE_TMDB_API_KEY;
-    const APIURL = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${APIKEY}&page=1`;
-    const IMGPATH = "https://image.tmdb.org/t/p/w1280";
     const SEARCHAPI = `https://api.themoviedb.org/3/search/movie?&api_key=${APIKEY}&query=`;
 
     if (searchTerm.trim()) {
-      console.log("Searching for:", searchTerm);
-
+      // Only update search results
       try {
         const data = await fetch(SEARCHAPI + searchTerm);
         const searchResult = await data.json();
-        console.log(searchResult);
-        setMovies(searchResult.results);
+        setSearchResults(searchResult.results);
       } catch (error) {
         console.error("Error fetching data:", error);
+        setSearchResults([]);
       }
     } else {
-      console.log("Search term is empty.");
-      // reset the movies list to the default popular movies
-    
-      try {
-        const response = await fetch(APIURL);
-        const data = await response.json();
-        setMovies(data.results);
-      } catch (error) {
-        console.error("Error fetching popular movies:", error);
-      }
+      // If search is cleared, clear search results so HomePage shows popularMovies
+      setSearchResults([]);
     }
   };
+
 
   return (
     <div className="px-2 relative top-[-50px]">
