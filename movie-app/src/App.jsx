@@ -21,6 +21,7 @@ export default function App() {
       try {
         const response = await fetch(APIURL);
         const data = await response.json();
+        console.log(data);
         setPopularMovies(data.results);
       } catch (error) {
         console.log(error);
@@ -52,7 +53,7 @@ export default function App() {
         <Routes> 
           <Route path="/" element={<HomePage popularMovies={popularMovies} searchResults={searchResults} setSearchResults={setSearchResults} />} />
           <Route path="/movies" element={<MoviesPage movies={popularMovies} tvShows={tvShows} />} /> 
-          <Route path="/movie/:id" element={<MovieDetailsPage />} /> 
+          <Route path="/details/:mediaType/:id" element={<MovieDetailsPage />} /> 
           <Route path="/pricing" element={<PricingPage />} /> 
           <Route path="*" element={<ErrorPage />} /> 
         </Routes>

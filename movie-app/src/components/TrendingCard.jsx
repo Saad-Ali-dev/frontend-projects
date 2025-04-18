@@ -16,7 +16,7 @@ export default function TrendingCard({ item, rank }) {
     <div className="relative h-56 w-48 md:h-56 md:w-48 lg:h-64 lg:w-56 flex-shrink-0 group cursor-pointer transition-transform duration-300 ease-in-out hover:scale-105">
 
       <span
-        className="absolute z-10 bottom-5 left-[-8px] md:bottom-4 md:-left-7 text-[10rem] sm:text-[10rem] md:text-[12rem] lg:text-[14rem] 2xl:-left-10 font-bold text-indigo-400/70 leading-none select-none transition-transform duration-300 ease-in-out"
+        className="absolute z-10 bottom-5 left-[-8px] md:bottom-4 md:-left-7 text-[10rem] sm:text-[10rem] md:text-[12rem] lg:text-[14rem] 2xl:-left-10 font-bold text-indigo-400/70 leading-none select-none transition-transform duration-300 ease-in-out opacity-50"
         // Added slight opacity and dark mode variation
         // Added subtle hover effect
         style={{
