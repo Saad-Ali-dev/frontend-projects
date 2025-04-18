@@ -33,8 +33,13 @@ export default function TrendingCards() {
 
         <div className="flex space-x-4 md:space-x-6 lg:space-x-8 overflow-x-auto overflow-y-hidden pb-4 -mb-4  gap-8 lg:gap-12 2xl:gap-24 ">
           {trendingItems.map((item, index) => (
-            <TrendingCard key={item.id} item={item} rank={index + 1} />
-          ))}
+             (item.media_type === 'movie' || item.media_type === 'tv') && (
+              <TrendingCard
+                key={item.id}
+                item={item}
+                rank={index + 1}
+              />
+          )))}
         </div>
     
     </div>

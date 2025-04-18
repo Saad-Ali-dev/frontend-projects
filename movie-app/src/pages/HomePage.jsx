@@ -13,7 +13,7 @@ export default function Home({ popularMovies, searchResults, setSearchResults })
     <div className="flex flex-col items-center justify-center">
       <HeroSection />
       <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} setSearchResults={setSearchResults}/>
-      <MovieCards movies={moviesToShow} title={searchResults && searchResults.length > 0 ? "Search Results" : "Popular"} isHomePage={true}/>
+      <MovieCards movies={moviesToShow} title={searchResults && searchResults.length > 0 ? "Search Results" : "Popular"} media_type="movie" isHomePage={true}/>
     </div>
   )
 }

@@ -1,11 +1,11 @@
 import React from "react";
 import MovieCard from "./MovieCard.jsx";
 
-export default function MovieCards({ movies, title, isHomePage }) {
+export default function MovieCards({ movies, title, isHomePage, media_type }) {
   
   if (isHomePage) {
     const MovieCards = movies.map((movie) => {
-      return <MovieCard key={movie.id} movie={movie} isHomePage={isHomePage} />;
+      return <MovieCard key={movie.id} item={movie} id={movie.id} media_type={media_type} isHomePage={isHomePage} />;
     });
     return (
       <div className="w-full xl:px-[60px] xl:py-[20px] 2xl:px-[80px] 2xl:py-[40px] ">
@@ -22,7 +22,7 @@ export default function MovieCards({ movies, title, isHomePage }) {
   } else {
     movies = movies.slice(0,10);
     const MovieCards = movies.map((movie) => {
-      return <MovieCard key={movie.id} movie={movie} isHomePage={isHomePage} />;
+      return <MovieCard key={movie.id} item={movie} id={movie.id} media_type={media_type} isHomePage={isHomePage} />;
     });
     return (
       <div className="w-full py-6 px-4 sm:px-6 lg:px-8 mt-5">

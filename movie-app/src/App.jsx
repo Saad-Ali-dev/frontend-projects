@@ -6,6 +6,7 @@ import MoviesPage from "./pages/MoviesPage.jsx";
 import PricingPage from "./pages/PricingPage.jsx";
 import MovieDetailsPage from "./pages/MovieDetailsPage.jsx"; 
 import ErrorPage from "./pages/ErrorPage.jsx"; 
+import ScrollToTop from "./components/ScrollToTop.jsx";
 
 export default function App() {
   const [popularMovies, setPopularMovies] = useState([]);
@@ -45,6 +46,7 @@ export default function App() {
 
   return (
     <Router> 
+      <ScrollToTop />
       <>
         {/* Background layer */}
         <div className="bg-[url('/BG.png')] bg-cover bg-no-repeat min-h-screen bg-center absolute top-0 left-0 right-0 z-[-10] opacity-60"></div>
