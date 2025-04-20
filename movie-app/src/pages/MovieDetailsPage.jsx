@@ -137,7 +137,7 @@ function MovieDetailsPage() {
         style={{ backgroundImage: `url(${backdropPath})` }}
       >
         <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/60 to-transparent"></div>
-        <div className="absolute inset-0 flex items-center justify-center">
+        <div className="absolute inset-0 items-center justify-center hidden lg:flex">
           {trailerKey && (
             <a
               href={`https://www.youtube.com/watch?v=${trailerKey}`}
