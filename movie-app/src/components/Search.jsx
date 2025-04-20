@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function Search({ searchTerm, setSearchTerm, setSearchResults }) {
+export default function Search({ searchTerm, setSearchTerm, setSearchResults, searchResults }) {
   // Handler for input changes
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
@@ -28,6 +28,11 @@ export default function Search({ searchTerm, setSearchTerm, setSearchResults }) 
     }
   };
 
+  // Handler to reset search and show popular movies
+  const handleResetSearch = () => {
+    setSearchTerm('');
+    setSearchResults([]);
+  };
 
   return (
     <div className="px-2 relative top-[-50px]">
@@ -48,6 +53,15 @@ export default function Search({ searchTerm, setSearchTerm, setSearchResults }) 
             placeholder="Search through 300+ movies online"
             className="bg-transparent border-none focus:outline-none text-gray-300 placeholder-gray-500 text-base sm:text-lg w-full flex-grow"
           />
+          {searchResults && searchResults.length > 0 && (
+            <button
+              type="button"
+              onClick={handleResetSearch}
+              className="text-purple-400 flex-shrink-0 hover:text-purple-200"
+            >
+              <span className="text-xl">↑</span>
+            </button>
+          )}
         </form>
       </div>
     </div>
