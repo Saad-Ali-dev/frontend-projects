@@ -6,14 +6,13 @@ export default function Search({ searchTerm, setSearchTerm, setSearchResults, se
     setSearchTerm(event.target.value);
   };
 
-  // Handler for form submission (e.g., pressing Enter)
+  // Handler for form submission (when enter is pressed)
   const handleSubmit = async (event) => {
     event.preventDefault();
     const APIKEY = import.meta.env.VITE_TMDB_API_KEY;
     const SEARCHAPI = `https://api.themoviedb.org/3/search/movie?&api_key=${APIKEY}&query=`;
 
     if (searchTerm.trim()) {
-      // Only update search results
       try {
         const data = await fetch(SEARCHAPI + searchTerm);
         const searchResult = await data.json();
@@ -23,12 +22,11 @@ export default function Search({ searchTerm, setSearchTerm, setSearchResults, se
         setSearchResults([]);
       }
     } else {
-      // If search is cleared, clear search results so HomePage shows popularMovies
       setSearchResults([]);
     }
   };
 
-  // Handler to reset search and show popular movies
+  // Handler to reset search and show popular movies (works on a button click)
   const handleResetSearch = () => {
     setSearchTerm('');
     setSearchResults([]);

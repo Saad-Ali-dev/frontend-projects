@@ -6,7 +6,7 @@ const CheckIcon = ({ className }) => (
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
     fill="currentColor"
-    className={`w-5 h-5 ${className}`} // Allow className override/extension
+    className={`w-5 h-5 ${className}`}
   >
     <path
       fillRule="evenodd"
@@ -36,7 +36,7 @@ function PricingCard({
     bg-gradient-to-br from-purple-600/20 via-transparent to-blue-600/10
     border-[#a855f7]
     hover:shadow-[0 0 25px 8px rgba(59, 130, 246, 0.3)]
-  `; // Use blue glow for featured hover as an example
+  `; 
 
   const buttonBaseStyle =
     'w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black';
@@ -50,7 +50,7 @@ function PricingCard({
     bg-gradient-to-r from-[#a855f7] to-[#3b82f6] text-white
     hover:opacity-90 hover:shadow-[0 0 15px 5px rgba(168, 85, 247, 0.5)]
     focus:ring-[#a855f7]
-  `; // Use purple glow for featured button
+  `; 
 
   const checkIconColor = isFeatured ? 'text-[#3b82f6]' : 'text-[#a855f7]';
 
@@ -66,7 +66,7 @@ function PricingCard({
       </div>
 
       {/* Features */}
-      <ul className="space-y-3 mb-8 flex-grow"> {/* flex-grow pushes button down */}
+      <ul className="space-y-3 mb-8 flex-grow">
         {features.map((feature, index) => (
           <li key={index} className="flex items-center">
             <CheckIcon className={`mr-3 flex-shrink-0 ${checkIconColor}`} />
@@ -75,7 +75,6 @@ function PricingCard({
         ))}
       </ul>
 
-      {/* Button */}
       <button
         className={`${buttonBaseStyle} ${isFeatured ? buttonFeaturedStyle : buttonNormalStyle} cursor-pointer`}
       >

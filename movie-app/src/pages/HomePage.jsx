@@ -7,7 +7,7 @@ import MovieCards from '../components/MovieCards.jsx'
 
 export default function Home({ popularMovies, searchResults, setSearchResults }) {
   const [searchTerm, setSearchTerm] = useState('');
-  // Show searchResults if present, else popularMovies
+  // Show searchResults if exists, else show popularMovies
   const moviesToShow = searchResults && searchResults.length > 0 ? searchResults : popularMovies;
   return (
     <div className="flex flex-col items-center justify-center">

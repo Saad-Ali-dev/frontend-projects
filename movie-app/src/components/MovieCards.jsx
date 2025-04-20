@@ -3,7 +3,7 @@ import MovieCard from "./MovieCard.jsx";
 
 export default function MovieCards({ movies, title, isHomePage, media_type }) {
   
-  if (isHomePage) {
+  if (isHomePage) { // Using this layout for Home Page
     const MovieCards = movies.map((movie) => {
       return <MovieCard key={movie.id} item={movie} id={movie.id} media_type={media_type} isHomePage={isHomePage} />;
     });
@@ -20,6 +20,7 @@ export default function MovieCards({ movies, title, isHomePage, media_type }) {
       </div>
     );
   } else {
+    // Decreased the number of movies and changed the layout to Horizontal for the Movies Page
     movies = movies.slice(0,10);
     const MovieCards = movies.map((movie) => {
       return <MovieCard key={movie.id} item={movie} id={movie.id} media_type={media_type} isHomePage={isHomePage} />;

@@ -15,3 +15,35 @@
   color: transparent;
 }
 
+
+@layer components {
+  .overflow-x-auto {
+    scrollbar-width: thin;
+    scrollbar-color: #ec4899 #030014;
+  }
+  .overflow-x-auto::-webkit-scrollbar {
+    height: 6px;
+  }
+  .overflow-x-auto::-webkit-scrollbar-track {
+    background: #030014;
+  }
+  .overflow-x-auto::-webkit-scrollbar-thumb {
+    background-color: #ec4899;
+    border-radius: 10px;
+    border: 2px solid #030014;
+  }
+  .overflow-x-auto::-webkit-scrollbar-thumb:hover {
+    background-color: #a855f7;
+  }
+  
+  @media (min-width: 768px) {
+    .overflow-x-auto::-webkit-scrollbar {
+      height: 8px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .overflow-x-auto::-webkit-scrollbar {
+      height: 10px;
+    }
+  }
+}

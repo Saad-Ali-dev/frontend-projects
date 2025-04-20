@@ -20,8 +20,6 @@ const formatCurrency = (amount) => {
 };
 
 function MovieDetailsPage() {
-  // Get mediaType (movie/tv) and id from URL parameters
-  // Make sure your Route path is defined like: /details/:mediaType/:id
   const { mediaType, id } = useParams();
   const navigate = useNavigate();
 
@@ -41,9 +39,7 @@ function MovieDetailsPage() {
       try {
         const url = `${TMDB_BASE_URL}/${mediaType}/${id}?api_key=${TMDB_API_KEY}&language=en-US&append_to_response=videos,credits`;
         const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
+  
         const data = await response.json();
         setDetails(data);
         // Find the official trailer or any trailer from videos
@@ -58,7 +54,6 @@ function MovieDetailsPage() {
                 .slice(0, 1) || []
         );
       } catch (err) {
-        console.error("Failed to fetch details:", err);
         setError(err.message);
       } finally {
         setLoading(false);
@@ -68,10 +63,9 @@ function MovieDetailsPage() {
     if (mediaType && id) {
       fetchDetails();
     } else {
-      setError("Media type or ID is missing.");
       setLoading(false);
     }
-  }, [mediaType, id, TMDB_API_KEY]); // Re-run effect if mediaType or id changes
+  }, [mediaType, id, TMDB_API_KEY]); 
 
   if (loading) {
     return (
@@ -103,37 +97,24 @@ function MovieDetailsPage() {
   const releaseYear = releaseDate ? new Date(releaseDate).getFullYear() : "N/A";
   const runtime =
     details.runtime ||
-    (details.episode_run_time ? details.episode_run_time[0] : null); // Use first episode runtime for TV
+    (details.episode_run_time ? details.episode_run_time[0] : null); 
   const posterPath = details.poster_path
     ? `${TMDB_IMAGE_BASE_URL}w500${details.poster_path}`
-    : "/placeholder-poster.png"; // Add a placeholder image in public folder
+    : "/No-Poster.png"; 
   const backdropPath = details.backdrop_path
     ? `${TMDB_IMAGE_BASE_URL}original${details.backdrop_path}`
-    : "/placeholder-backdrop.png"; // Add a placeholder
+    : "/No-Poster.png"; 
   const rating = details.vote_average ? details.vote_average.toFixed(1) : "N/A";
   const voteCount = details.vote_count || 0;
-  // MPAA Rating / Certification (Needs careful handling as structure varies)
-  // Let's try finding US certification for simplicity
-  const certification =
-    details.release_dates?.results?.find((r) => r.iso_3166_1 === "US")
-      ?.release_dates[0]?.certification || "N/A"; // This is for movies
-  // For TV shows, content_ratings might be available
-  const tvCertification =
-    details.content_ratings?.results?.find((r) => r.iso_3166_1 === "US")
-      ?.rating || "N/A";
-  const displayCertification =
-    mediaType === "movie" ? certification : tvCertification;
 
   const trailerKey = videos.length > 0 ? videos[0].key : null;
 
   // --- Component Render ---
   return (
     <div className="min-h-screen bg-gray-900 text-white ">
-      {" "}
-      {/* Adjust pt based on your Navbar height */}
       {/* --- Backdrop Section --- */}
       <div
-        className="relative h-[50vh] md:h-[65vh] lg:h-[calc(100vh-80px)] bg-cover bg-center" // Adjust height and top padding offset
+        className="relative h-[50vh] md:h-[65vh] lg:h-[calc(100vh-80px)] bg-cover bg-center" 
         style={{ backgroundImage: `url(${backdropPath})` }}
       >
         <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/60 to-transparent"></div>
@@ -171,11 +152,11 @@ function MovieDetailsPage() {
             <img
               src={posterPath}
               alt={`Poster for ${title}`}
-              className="w-full h-auto rounded-lg shadow-xl object-cover aspect-[2/3]" // Maintain aspect ratio
+              className="w-full h-auto rounded-lg shadow-xl object-cover aspect-[2/3]" 
               onError={(e) => {
                 e.target.onerror = null;
-                e.target.src = "/placeholder-poster.png";
-              }} // Fallback image
+                e.target.src = "/No-Poster.png";
+              }}
             />
           </div>
 
@@ -187,14 +168,6 @@ function MovieDetailsPage() {
             </h1>
             <div className="flex items-center justify-center lg:justify-start space-x-3 text-gray-400 mb-4 text-sm md:text-base">
               <span>{releaseYear}</span>
-              {displayCertification !== "N/A" && (
-                <>
-                  <span>•</span>
-                  <span className="border border-gray-500 px-1.5 rounded text-xs">
-                    {displayCertification}
-                  </span>
-                </>
-              )}
               {runtime && (
                 <>
                   <span>•</span>
@@ -230,6 +203,7 @@ function MovieDetailsPage() {
               </div>
             )}
 
+            {/* Trailer Button for small screens*/}
             <div className="inset-0 flex items-center justify-center mb-4 lg:hidden">
               {trailerKey && (
                 <a
@@ -356,7 +330,6 @@ function MovieDetailsPage() {
               {details.tagline && (
                 <div className="sm:col-span-2 lg:col-span-3">
                   {" "}
-                  {/* Allow tagline to span more columns */}
                   <strong className="font-semibold text-gray-200 block">
                     Tagline:
                   </strong>
@@ -370,7 +343,6 @@ function MovieDetailsPage() {
                 details.production_companies.length > 0 && (
                   <div className="sm:col-span-2 lg:col-span-3">
                     {" "}
-                    {/* Allow companies to span more columns */}
                     <strong className="font-semibold text-gray-200 block mb-1">
                       Production Companies:
                     </strong>

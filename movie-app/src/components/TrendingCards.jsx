@@ -17,7 +17,6 @@ export default function TrendingCards() {
         const data = await response.json();
         setTrendingItems(data.results ? data.results.slice(0, 5) : []);
       } catch (e) {
-        console.error("Failed to fetch trending items:", e);
         setTrendingItems([]);
       }
     };

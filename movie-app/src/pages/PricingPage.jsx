@@ -24,7 +24,7 @@ export default function PricingPage() {
         'Ad-free TV shows and movies',
         'Download on 2 supported devices at a time',
       ],
-      isFeatured: true, // Make this one featured
+      isFeatured: true,
       buttonText: 'Choose Standard',
     },
     {
