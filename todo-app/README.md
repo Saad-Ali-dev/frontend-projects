@@ -24,4 +24,4 @@ A minimalist yet fully functional Todo App built with React and Vite, showcasing
 
 ## Live Demo
 
-[View Live Demo](https://your-live-demo-link.com)
+[View Live Demo](https://todo-app-one-alpha-55.vercel.app/)
